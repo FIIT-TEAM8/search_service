@@ -1,0 +1,61 @@
+openapi: 3.0.0
+servers:
+  # Added by API Auto Mocking Plugin
+  - description: SwaggerHub API Auto Mocking
+    url: https://virtserver.swaggerhub.com/dominik-horvath/search-service/1.0.0
+info:
+  description: This is a simple API for adversea search service
+  version: "1.0.0"
+  title: search service
+paths:
+  /search:
+    get:
+      summary: Search for a person in adversea system
+      operationId: searchName
+      parameters:
+        - name: method
+          in: query
+          required: true
+          description: Method which should be used to search for people
+          schema:
+            type: string
+            enum: [exact, rough]
+        - name: name
+          in: query
+          required: true
+          description: The name to search
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchResult'
+components:
+  schemas:
+    SearchResult:
+      type: array
+      items:
+        $ref: '#/components/schemas/SearchEntityResponse'
+    SearchEntityResponse:
+      type: object
+      properties:
+        name:
+          type: string
+        name_ascii:
+          type: string
+        type:
+          type: string
+          enum:
+            - person
+            - organization
+        locations:
+          type: array
+          items:
+            type: string
+        source:
+          type: array
+          items:
+            type: string

@@ -1,1 +1,9 @@
-
+spring:
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: adversea_search
+      authentication-database: admin
+      username: root
+      password: example

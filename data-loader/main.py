@@ -44,13 +44,15 @@ def get_all_parsed_links():
 
 
 def update_locations(record, locations):
-    current_locations = record["locations"]
+    current_locations = record["locations"] if "locations" in record else {}
     for location in locations:
         if location in current_locations:
              current_locations[location] += 1
         else:
              current_locations[location] = 1
     record["locations"] = current_locations
+    if "ams" not in record["information_source"]:
+        record["information_source"].append("ams")
     return record
 
 def create_locations(record, locations):
@@ -68,6 +70,7 @@ def insert_or_update_entities(entities: list, entity_type: list, locations: list
                     "name": entity,
                     "name_ascii": unidecode(entity),
                     "type": entity_type,
+                    "information_source": ["ams"],
                     "locations": {}
                 }
                 new_record = create_locations(new_record, locations)
