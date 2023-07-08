@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -21,8 +22,7 @@ public class SearchController implements SearchApi {
 
     @Override
     public ResponseEntity<List<SearchEntityResponse>> searchName(@NotNull String method, @NotNull String name) {
-        service.test();
-
-        return ResponseEntity.ok(null);
+        List<SearchEntityResponse> response = service.search(method, name);
+        return ResponseEntity.ok(response);
     }
 }

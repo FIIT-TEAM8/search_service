@@ -6,6 +6,7 @@ import lombok.Setter;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
+import java.util.List;
 import java.util.Map;
 
 @Getter
@@ -22,6 +23,8 @@ public class SearchEntityModel {
     private String type;
     @Field("locations")
     private Map<String, Integer> locations;
+    @Field("information_source")
+    private List<String> source;
 
 }
 
