@@ -77,7 +77,9 @@ def insert_or_update_entities(entities: list, entity_type: list, locations: list
                 collection_search.insert_one(new_record)
             else:
                 document = update_locations(document, locations)
-                collection_search.update_one({"name": entity}, {"$set": {"locations": document["locations"]}})
+                if "ams" not in document["information_source"]:
+                    document["information_source"].append("ams")
+                collection_search.update_one({"name": entity}, {"$set": {"locations": document["locations"], "information_source": document["information_source"]}})
 
         
 check_connection()
