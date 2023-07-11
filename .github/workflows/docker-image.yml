@@ -21,6 +21,5 @@ jobs:
       uses: docker/build-push-action@v4
       with:
         context: ./search-service
-        file: ./Dockerfile
         push: true
         tags: fiitteam8/mvp-search-service:latest
