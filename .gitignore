@@ -37,4 +37,4 @@ venv
 *.pyc
 *.env
 gpt_adverse_articles.json
-targets.simple.csv
+targets.simple_*.csv
