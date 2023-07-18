@@ -18,3 +18,6 @@ mvn clean compile
 ```
 
 This will create all the necessary classes so you can run it in your IDE. This is becasue this project uses OpenAPI spec file to generate the server stup interface + some DTOs that are required for function.
+
+## swagger
+https://app.swaggerhub.com/apis-docs/dominik-horvath/search-service/1.0.0
