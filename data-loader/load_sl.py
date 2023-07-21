@@ -71,7 +71,7 @@ for rec in records:
     if rec["id"] in parsed_slids:
         continue
     name = rec["name"].lower()
-    document = collection_search.find_one({"name_ascii": name})
+    document = collection_search.find_one({"name": name})
     if document == None:
         locations = {}
         for loc in rec["countries"].split(";"):
