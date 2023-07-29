@@ -1,0 +1,44 @@
+name: Push Docker image to Dockerhub and deploy docker-compose
+
+on:
+  push:
+    branches: [ "main" ]
+    paths-ignore:
+      - '**/README.md'
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+    steps:
+    - name: Check out the repo
+      uses: actions/checkout@v3
+      
+    - name: Log in to Docker Hub
+      uses: docker/login-action@v2
+      with:
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_PASSWORD }}
+
+    - name: Build and push Docker image
+      uses: docker/build-push-action@v4
+      with:
+        context: ./search-service
+        push: true
+        tags: fiitteam8/mvp-search-service:latest
+  
+  deploy:
+    needs: build
+    runs-on: ubuntu-22.04
+    timeout-minutes: 10
+    permissions:
+      contents: read
+    steps:
+    - name: Executing remote ssh docker deploy
+      uses: appleboy/ssh-action@v0.1.10
+      with:
+        host: ${{ secrets.HOST_MACHINE }}
+        username: ${{ secrets.DEPLOY_USERNAME }}
+        password: ${{ secrets.DEPLOY_PASSWORD }}
+        script: |
+          cd /home/fiitkar/mvp-infra
+          docker-compose pull search-service && docker-compose up -d --no-deps --build search-service && docker system prune -f
