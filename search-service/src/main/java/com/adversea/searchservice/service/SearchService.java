@@ -4,6 +4,7 @@ import com.adversea.searchservice.repository.SearchRepository;
 import com.adversea.searchservice.repository.entity.SearchEntityModel;
 import com.adversea.searchservice.utility.Mapper;
 import org.SwaggerCodeGenAdversea.model.SearchEntityResponse;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +24,7 @@ public class SearchService {
         if (method.equals("exact")) {
             mongoResult = repository.searchExactName(name.toLowerCase());
         } else if (method.equals("rough")) {
+            name = StringUtils.stripAccents(name);
             mongoResult = repository.searchRoughName(name.toLowerCase());
         }
         List<SearchEntityResponse> convertedResult = new ArrayList<>();
