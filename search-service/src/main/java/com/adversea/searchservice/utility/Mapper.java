@@ -20,7 +20,7 @@ public class Mapper {
         response.setName(model.getName());
         response.setNameAscii(model.getNameAscii());
         response.setType(SearchEntityResponse.TypeEnum.fromValue(model.getType()));
-        response.setSource(model.getSource());
+        response.setSource(model.getInformationSource());
         response.setLocations(sortLocations(model.getLocations(), TOP_NUMBER_OF_LOCATIONS));
         return response;
 
@@ -34,7 +34,6 @@ public class Mapper {
         for (Map.Entry<String, Integer> entry : list) {
             sortedLocations.add(entry.getKey());
         }
-
         return sortedLocations.stream().limit(numberOfLocations).collect(Collectors.toList());
     }
 

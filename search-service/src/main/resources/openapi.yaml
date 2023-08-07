@@ -13,13 +13,6 @@ paths:
       summary: Search for a person in adversea system
       operationId: searchName
       parameters:
-        - name: method
-          in: query
-          required: true
-          description: Method which should be used to search for people
-          schema:
-            type: string
-            enum: [exact, rough]
         - name: name
           in: query
           required: true

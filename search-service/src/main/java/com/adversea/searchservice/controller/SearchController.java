@@ -21,8 +21,8 @@ public class SearchController implements SearchApi {
     SearchService service;
 
     @Override
-    public ResponseEntity<List<SearchEntityResponse>> searchName(@NotNull String method, @NotNull String name) {
-        List<SearchEntityResponse> response = service.search(method, name);
+    public ResponseEntity<List<SearchEntityResponse>> searchName(@NotNull String name) {
+        List<SearchEntityResponse> response = service.search(name);
         return ResponseEntity.ok(response);
     }
 }
