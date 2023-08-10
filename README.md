@@ -23,7 +23,7 @@ This will create all the necessary classes so you can run it in your IDE. This i
 * aliases_ascii - array of ASCII aliases
 * aliases_count - histogram of aliases. Similar structure to the locations field but with aliases. 
 * type - person / organization
-* information_source- array of all identified person sources. Can contain values ams / pep / sl
+* information_source - array of all identified person sources. Can contain values ams / pep / sl
 * locations - histogram of locations where this person was. Its basically a json, its structure can be like this: {"Bratislava": 12, "Vienna": 5}. Using this we can determine the most common locations for an entity
 * ams_articles - array of links to articles where this person was found
 * sl_record - array of SL record IDs
