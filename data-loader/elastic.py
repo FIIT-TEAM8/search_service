@@ -3,9 +3,10 @@ import json
 import hashlib
 import base64
 import urllib
+import os
 
 # config
-ELASTIC_HOST = "http://localhost:9200"
+ELASTIC_HOST = os.environ.get("ELASTIC_URI", "http://localhost:9200")
 ELASTIC_HOST += "" if ELASTIC_HOST.endswith("/") else "/"
 
 
