@@ -1,0 +1,45 @@
+{
+    "mappings": {
+      "properties": {
+        "name": {
+          "type": "text"
+        },
+        "name_ascii": {
+          "type": "text"
+        },
+        "aliases": {
+          "type": "text"
+        },
+        "aliases_ascii": {
+          "type": "text"
+        },
+        "aliases_count": {
+          "type": "flattened",
+          "index": false
+        },
+        "type": {
+          "type": "keyword",
+          "index": false
+        },
+        "information_source": {
+          "type": "keyword",
+          "index": false
+        },
+        "locations": {
+          "type": "flattened"
+        },
+        "ams_articles": {
+          "type": "text",
+          "index": false
+        },
+        "sl_record": {
+          "type": "text",
+          "index": false
+        },
+        "pep_record": {
+          "type": "text",
+          "index": false
+        }
+      }
+    }
+}

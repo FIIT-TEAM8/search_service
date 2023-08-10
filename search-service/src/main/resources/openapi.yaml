@@ -13,13 +13,6 @@ paths:
       summary: Search for a person in adversea system
       operationId: searchName
       parameters:
-        - name: method
-          in: query
-          required: true
-          description: Method which should be used to search for people
-          schema:
-            type: string
-            enum: [exact, rough]
         - name: name
           in: query
           required: true
@@ -33,8 +26,49 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/SearchResult'
+
+  /sources:
+    get:
+      summary: Get source materials for an entity based on it's ID
+      operationId: getSources
+      parameters:
+        - name: entityId
+          in: query
+          required: true
+          description: ID of an entity you want to retrieve sources
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SourcesResult'
+        '404':
+          description: Not found
 components:
   schemas:
+    SourcesResult:
+      type: object
+      properties:
+        ams:
+          type: array
+          items:
+            type: string
+            example: "https://aktuality.sk/kocner"
+        pep:
+          type: array
+          items:
+            type: string
+            example: "tpod87d5ga8whnj78"
+
+        sl:
+          type: array
+          items:
+            type: string
+            example: "t98hr64f65d4g8"
+
     SearchResult:
       type: array
       items:
@@ -42,6 +76,8 @@ components:
     SearchEntityResponse:
       type: object
       properties:
+        id:
+          type: string
         name:
           type: string
         name_ascii:
