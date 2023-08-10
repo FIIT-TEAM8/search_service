@@ -16,7 +16,6 @@ import java.util.Map;
 @Document(indexName = "adversea_search", createIndex = false)
 public class SearchEntityModel {
 
-
     @Id
     private String id;
 
@@ -46,7 +45,7 @@ public class SearchEntityModel {
     @Field(name = "sl_record")
     private List<String> slRecord;
 
-    @Field(name = "prep_record")
+    @Field(name = "pep_record")
     private List<String> pepRecord;
 
 }

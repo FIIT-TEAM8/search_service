@@ -102,7 +102,8 @@ def insert_or_update_entities(entity: str, entity_type: str, entity_locations: l
         new_record = create_aliases(new_record, entity_aliases)
         new_record = create_locations(new_record, entity_locations)
         new_record = update_aliases(new_record, entity_aliases)
-        new_record = update_aliases_count(new_record, entity_aliases)
+        for al in entity_aliases:
+            new_record = update_aliases_count(new_record, al)
         elastic.insert_main_document(new_record)
     else:
         print("Existing entity " + document["_source"]["name"] + " matched with " + entity)
